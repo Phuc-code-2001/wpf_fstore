@@ -1,0 +1,103 @@
+﻿<Window x:Class="SalesWPFApp.CreateProductModalWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SalesWPFApp"
+        mc:Ignorable="d"
+        Title="Thêm mới sản phẩm" Height="450" Width="800">
+    <Grid>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Background="AliceBlue">
+            <TextBlock Style="{StaticResource TextAppName}"
+                       TextAlignment="Center">Thêm mới sản phẩm</TextBlock>
+            <Grid Margin="20,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Label Target="{Binding ElementName=txtEmail}" Content="_CategoryId"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Margin="15,10"/>
+                <TextBox x:Name="txtCategoryId"
+                         Grid.Row="0"
+                         Grid.Column="1"
+                         Margin="15,10"
+                         VerticalAlignment="Center"
+                         Text="{Binding CategoryId}"/>
+
+                <Label Target="{Binding ElementName=txtPwd}" Content="_ProductName"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       Margin="15,10"/>
+                <TextBox x:Name="txtProductName"
+                         Grid.Row="1"
+                         Grid.Column="1"
+                         Margin="15,10"
+                         VerticalAlignment="Center"
+                         Text="{Binding ProductName}"/>
+
+                <Label Target="{Binding ElementName=txtCompanyName}" Content="_Weight"
+                       Grid.Row="2"
+                       Grid.Column="0"
+                       Margin="15,10"/>
+                <TextBox x:Name="txtWeight"
+                         Grid.Row="2"
+                         Grid.Column="1"
+                         Margin="15,10"
+                         VerticalAlignment="Center"
+                         Text="{Binding Weight}"/>
+
+                <Label Target="{Binding ElementName=txtCity}" Content="_UnitPrice"
+                       Grid.Row="3"
+                       Grid.Column="0"
+                       Margin="15,10"/>
+                <TextBox x:Name="txtUnitPrice"
+                         Grid.Row="3"
+                         Grid.Column="1"
+                         Margin="15,10"
+                         VerticalAlignment="Center"
+                         Text="{Binding UnitPrice}"/>
+
+                <Label Target="{Binding ElementName=txtCountry}" Content="_UnitslnStock"
+                       Grid.Row="4"
+                       Grid.Column="0"
+                       Margin="15,10"/>
+                <TextBox x:Name="txtUnitslnStock"
+                         Grid.Row="4"
+                         Grid.Column="1"
+                         Margin="15,10"
+                         VerticalAlignment="Center"
+                         Text="{Binding UnitslnStock}"/>
+
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Right" 
+                            Grid.Row="5" Grid.ColumnSpan="2"
+                            Margin="15,10">
+                    <Button Margin="10,0,0,0" Padding="10,2"
+                            Background="#f71647"
+                            Foreground="White"
+                            FontFamily="Bell MT"
+                            Click="CloseClicked">Đóng</Button>
+                    <Button Margin="10,0,0,0" Padding="10,0"
+                            Background="#4576f7"
+                            Foreground="White"
+                            FontFamily="Bell MT"
+                            Click="AddNewClicked">Tạo mới</Button>
+                </StackPanel>
+
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

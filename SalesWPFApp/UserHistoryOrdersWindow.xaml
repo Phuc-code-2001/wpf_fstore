@@ -1,0 +1,51 @@
+﻿<Window x:Class="SalesWPFApp.UserHistoryOrdersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SalesWPFApp"
+        mc:Ignorable="d"
+        Title="Lịch sử đơn hàng" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/bg.jpg"></ImageBrush>
+        </Grid.Background>
+
+        <StackPanel>
+            <TextBlock Style="{StaticResource TextAppName}"
+                       TextAlignment="Center">Danh sách đơn hàng</TextBlock>
+            <DataGrid x:Name="dgOrders" AutoGenerateColumns="False" IsReadOnly="True"
+                      Margin="20" Background="White" RowHeight="30" MaxHeight="200"
+                      FontFamily="Bell MT" FontSize="16" VerticalAlignment="Center">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Mã đơn hàng" Binding="{Binding OrderId}" Width="*"/>
+                    <DataGridTextColumn Header="Ngày đặt" Binding="{Binding OrderDate}" Width="*"/>
+                    <DataGridTextColumn Header="Tổng thanh toán" Binding="{Binding TotalPayment}" Width="*"/>
+                    <DataGridTemplateColumn Header="" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button HorizontalAlignment="Center"
+                                        Margin="5,2"
+                                        Background="#d63546"
+                                        Foreground="#ffffff"
+                                        Click="ViewOrderDetailsClicked"
+                                        Tag="{Binding OrderId}"
+                                        FontFamily="Bell MT">Xem chi tiết</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button HorizontalAlignment="Center"
+                    Margin="20,10" Padding="10,5"
+                    Grid.Row="1" Grid.Column="1"
+                    Background="#d6d6d6"
+                    Foreground="#333333"
+                    FontFamily="Bell MT"
+                    Click="RefreshClicked">Tải lại danh sách</Button>
+
+        </StackPanel>
+
+    </Grid>
+</Window>

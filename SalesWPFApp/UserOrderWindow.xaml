@@ -1,0 +1,100 @@
+﻿<Window x:Class="SalesWPFApp.UserOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SalesWPFApp"
+        mc:Ignorable="d"
+        Title="Giỏ hàng" Height="Auto" Width="800">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/bg.jpg"></ImageBrush>
+        </Grid.Background>
+
+        <StackPanel>
+            <TextBlock Style="{StaticResource TextAppName}"
+                       TextAlignment="Center">Giỏ hàng</TextBlock>
+            <DataGrid x:Name="dgOrder" AutoGenerateColumns="False" IsReadOnly="True"
+                      Margin="20" Background="White" RowHeight="30" MaxHeight="300"
+                      FontFamily="Bell MT" FontSize="16" VerticalAlignment="Center">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ProductName" Binding="{Binding Path=Product.ProductName}" Width="*"/>
+                    <DataGridTextColumn Header="UnitPrice" Binding="{Binding UnitPrice}" Width="*"/>
+                    <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="*"/>
+                    <DataGridTemplateColumn Header="Configure" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Button Tag="{Binding Path=Product.ProductId}" Margin="5,0" Padding="5,2" Width="20" Height="20" Click="IncreaseQuantityClicked">+</Button>
+                                    <Button Tag="{Binding Path=Product.ProductId}" Margin="5,0" Padding="5,2" Width="20" Height="20" Click="DecreaseQuantityClicked">-</Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Action" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button HorizontalAlignment="Center"
+                                        Margin="5,2"
+                                        Background="#d63546"
+                                        Foreground="#ffffff"
+                                        Tag="{Binding ProductId}"
+                                        Click="RemoveProductClicked"
+                                        FontFamily="Bell MT">Remove</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button Margin="20,10" Padding="10,5"
+                    HorizontalAlignment="Left"
+                    Grid.Row="1" Grid.Column="1"
+                    Background="#d6d6d6"
+                    Foreground="#333333"
+                    FontFamily="Bell MT"
+                    Click="RefreshClicked">Tải lại danh sách</Button>
+
+            <StackPanel Margin="20,0" HorizontalAlignment="Right" Orientation="Horizontal">
+                
+                <StackPanel Margin="20,0">
+                    <TextBlock Text="Discount:" Foreground="#ffffff" Margin="0,0"/>
+                    <TextBlock Text="Freight:" Foreground="#ffffff" Margin="0,20"/>
+                    <TextBlock Text="Total:" Foreground="#ffffff" Margin="0,0"/>
+                </StackPanel>
+                <StackPanel>
+                    <ComboBox Width="100" SelectionChanged="DiscountSelectionChanged" Margin="0,0">
+                        <ComboBoxItem Tag="0">--------</ComboBoxItem>
+                        <ComboBoxItem Tag="0.1">10%</ComboBoxItem>
+                        <ComboBoxItem Tag="0.2">20%</ComboBoxItem>
+                        <ComboBoxItem Tag="0.5">50%</ComboBoxItem>
+                    </ComboBox>
+                    <TextBlock Text="{Binding Freight}"
+                               TextAlignment="Right"
+                               Padding="10,3" Background="#d3d3d3"
+                               FontWeight="Bold"
+                               Foreground="#a53499"
+                               Margin="0,12"/>
+                    <TextBlock Text="100000 vnd" x:Name="txtTotalPaymentCost" 
+                               TextAlignment="Right"
+                               Padding="10,3" Background="#d3d3d3"
+                               FontWeight="Bold"
+                               Foreground="#a53499"
+                               Margin="0,2"/>
+                </StackPanel>
+            </StackPanel>
+
+            <Button HorizontalAlignment="Right"
+                    Margin="20,10"
+                    Padding="10,5"
+                    FontWeight="DemiBold"
+                    Background="#34d512"
+                    Foreground="#ffffff"
+                    Click="ConfirmClicked">Xác nhận đặt hàng</Button>
+
+        </StackPanel>
+
+    </Grid>
+
+</Window>
